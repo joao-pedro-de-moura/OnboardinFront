@@ -4,7 +4,7 @@ export default function pageErro(){
     return (
         <div >
        <h1>
-        error
+        errors
        </h1>
       </div>
 

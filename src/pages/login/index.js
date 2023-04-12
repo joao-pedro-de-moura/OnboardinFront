@@ -1,7 +1,6 @@
 import {
   Container,
   Content,
-  Footer,
   Form,
   ButtonToolbar,
   Button,
@@ -20,7 +19,7 @@ export default function Login(){
               <Panel header={<h3>Login</h3>} bordered>
                 <Form fluid>
                   <Form.Group>
-                    <Form.ControlLabel>Username or email address</Form.ControlLabel>
+                    <Form.ControlLabel> email </Form.ControlLabel>
                     <Form.Control name="name" />
                   </Form.Group>
                   <Form.Group>
@@ -38,7 +37,6 @@ export default function Login(){
             </FlexboxGrid.Item>
           </FlexboxGrid>
         </Content>
-        <Footer>Footer</Footer>
       </Container>
     </div>
 

@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login"
 import PageErro from "../pages/error";
+import MyRoute from "./myRoute";
 
 
 export default function Routers(){
@@ -9,8 +10,10 @@ export default function Routers(){
     return(
         <BrowserRouter>
         <Routes>
-            <Route exact path="/" element ={<Login/>} />
-            <Route  path="*" element ={<PageErro/>} />
+            <Route  element ={<MyRoute/>} >
+            <Route  path="/login" element ={<Login/>} />
+            </Route>
+            <Route  path="/" element ={<PageErro/>} />
          </Routes>
         </BrowserRouter>
 
