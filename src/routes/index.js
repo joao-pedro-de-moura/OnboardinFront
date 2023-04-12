@@ -13,7 +13,7 @@ export default function Routers(){
             <Route  element ={<MyRoute/>} >
             <Route  path="/login" element ={<Login/>} />
             </Route>
-            <Route  path="/" element ={<PageErro/>} />
+            <Route  path="*" element ={<PageErro/>} />
          </Routes>
         </BrowserRouter>
 
