@@ -1,34 +1,48 @@
-import React from 'react';
+import {
+  Container,
+  Content,
+  Footer,
+  Form,
+  ButtonToolbar,
+  Button,
+  Panel,
+  FlexboxGrid
+} from 'rsuite';
 
-    import { Container, Form, Schema } from 'rsuite';
-    import 'rsuite/dist/rsuite.min.css';
-    import { Button } from 'rsuite';
-    import { ConteinerL } from './styles';
- const model = Schema.Model({
-  email: Schema.Types.StringType().isRequired('Please enter a valid email address..'),
-  password: Schema.Types.StringType().isEmail('Please enter a valid password address.')
-});
+export default function Login(){
+  return (
+      <div className="show-fake-browser login-page">
+      <Container>
+       
+        <Content>
+          <FlexboxGrid justify="center">
+            <FlexboxGrid.Item colspan={12}>
+              <Panel header={<h3>Login</h3>} bordered>
+                <Form fluid>
+                  <Form.Group>
+                    <Form.ControlLabel>Username or email address</Form.ControlLabel>
+                    <Form.Control name="name" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.ControlLabel>Password</Form.ControlLabel>
+                    <Form.Control name="password" type="password" autoComplete="off" />
+                  </Form.Group>
+                  <Form.Group>
+                    <ButtonToolbar>
+                      <Button appearance="primary">Sign in</Button>
+                      <Button appearance="link">Forgot password?</Button>
+                    </ButtonToolbar>
+                  </Form.Group>
+                </Form>
+              </Panel>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
+        </Content>
+        <Footer>Footer</Footer>
+      </Container>
+    </div>
 
-const TextField = ({ name, label, accepter, ...rest }) => (
-  <Form.Group controlId={name}>
-    <Form.ControlLabel>{label} </Form.ControlLabel>
-    <Form.Control name={name} accepter={accepter} {...rest} />
-  </Form.Group>
-);
-  export default function Login() {
-    
-      return (
-        <ConteinerL>
-          <Form model={model}>
-            <TextField name="Email" label="Email" />
-            <TextField name="password" label="Password" />
-            <Button appearance="primary" type="submit">
-               Submit
-            </Button>
-          </Form>
-       </ConteinerL>
-      );
-    
-  }
+  )
+}
 
  
