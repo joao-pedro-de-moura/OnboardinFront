@@ -9,7 +9,7 @@ const [clients, setClients] = useState()
              const response = await axios.get('/clients/1')
              const {data} = response
              
-             setClients(data.name)
+             setClients(data.names)
              console.log(data)
 
          }

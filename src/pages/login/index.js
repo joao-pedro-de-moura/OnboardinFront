@@ -24,12 +24,12 @@ export default function Login(){
                   </Form.Group>
                   <Form.Group>
                     <Form.ControlLabel>Password</Form.ControlLabel>
-                    <Form.Control name="password" type="password" autoComplete="off" />
+                    <Form.Control name="password" type="password" autoComplete="off"  />
                   </Form.Group>
                   <Form.Group>
                     <ButtonToolbar>
                       <Button appearance="primary">Sign in</Button>
-                      <Button appearance="link">Forgot password?</Button>
+                      <Button appearance="link" href='/error'>Forgot password?</Button>
                     </ButtonToolbar>
                   </Form.Group>
                 </Form>
