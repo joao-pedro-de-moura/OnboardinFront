@@ -7,8 +7,23 @@ import {
   Panel,
   FlexboxGrid
 } from 'rsuite';
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/actions'
+
 
 export default function Login(){
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+
+    function HandleClick(e){
+      
+      dispatch(actions.clicaBotaoRequest({email, password}))
+
+
+}
+
   return (
       <div className="show-fake-browser login-page">
       <Container>
@@ -20,16 +35,17 @@ export default function Login(){
                 <Form fluid>
                   <Form.Group>
                     <Form.ControlLabel> email </Form.ControlLabel>
-                    <Form.Control name="name" />
+                    <Form.Control name="email" value={email} onChange={e => setEmail(e)}/>
                   </Form.Group>
                   <Form.Group>
                     <Form.ControlLabel>Password</Form.ControlLabel>
-                    <Form.Control name="password" type="password" autoComplete="off"  />
+                    <Form.Control name="password" type="password" autoComplete="off"
+                     value={password} onChange={e => setPassword(e)}  />
                   </Form.Group>
                   <Form.Group>
                     <ButtonToolbar>
-                      <Button appearance="primary">Sign in</Button>
-                      <Button appearance="link" href='/error'>Forgot password?</Button>
+                      <Button appearance="primary" onClick={HandleClick}>Sign in</Button>
+                      <Button appearance="link" href='/register'>Forgot password?</Button>
                     </ButtonToolbar>
                   </Form.Group>
                 </Form>

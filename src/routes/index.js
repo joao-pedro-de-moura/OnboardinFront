@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login"
 import PageErro from "../pages/error";
-import MyRoute from "./myRoute";
+import LoggedIn from "./loggedIn";
+import Logged from "./logged"
 import User from "../pages/user"
 import Register from "../pages/register"
 import Admin from "../pages/admin"
@@ -12,13 +13,15 @@ export default function Routers(){
     return(
         <BrowserRouter>
         <Routes>
-            <Route  element ={<MyRoute/>} >
+            <Route  element ={<LoggedIn/>} >
             <Route  path="/admin" element ={<Admin/>} />
-            <Route  path="/user" element ={<User/>} />
-            <Route  path="/register" element ={<Register/>} />
+            <Route  path="/" element ={<User/>} />
             </Route>
-            <Route  path="/" element ={<Login/>} />
+            <Route  element ={<Logged/>} >
+            <Route  path="/register" element ={<Register/>} />
+            <Route  path="/login" element ={<Login/>} />
             <Route  path="*" element ={<PageErro/>} />
+            </Route>
          </Routes>
         </BrowserRouter>
 
