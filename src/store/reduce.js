@@ -9,7 +9,7 @@ export default function reduce (state = initialState, action){
                 
                 const newState = {...state}
                 newState.botaoClicado = !newState.botaoClicado
-                console.log(newState.botaoClicado)
+                console.log( action.payload)
             return newState
         }
 

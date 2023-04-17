@@ -1,3 +1,4 @@
+
 export function clicaBotaoRequest(payload){
     return{
         type: 'REQUEST',
