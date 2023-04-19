@@ -19,6 +19,10 @@ const [clients, setClients] = useState([])
          getData()
      }, [])
      
+    const handleDelete = async (RowId) => {
+       // await axios.delete(`/clients/${RowId}`)
+       console.log(RowId)
+     }
     return(
         
         <Table
@@ -39,7 +43,7 @@ const [clients, setClients] = useState([])
 
         <Cell style={{ padding: '6px' }}>
           {rowData => (
-            <Button appearance="link" onClick={() => alert(`id:${rowData.id}`)}>
+            <Button appearance="link" onClick={handleDelete(rowData.id)}>
               Edit
             </Button>
           )}

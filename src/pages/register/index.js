@@ -8,28 +8,26 @@ import {
     FlexboxGrid
   } from 'rsuite';
   import React, {useState} from 'react';
-  import axios from '../../services/axios';
+import axios from '../../services/axios';
+  
 
   export default function Register(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
-   async function handleSubmite(e){
-    
 
+    function HandleClick(){
         try{
-            const response = await axios.post('/clients',{
-                email,
-                password,
-                name
+            axios.post('/clients', {
+              email,
+              password,
+              name
             })
-            console.log(response.data)
-     
-        }catch(e){
-            e.json({error: "erro"})
+        }catch{
+          
         }
 
-   }
+    }
 
 
     return (
@@ -39,7 +37,7 @@ import {
             <FlexboxGrid justify="center">
               <FlexboxGrid.Item colspan={12}>
                 <Panel header={<h3>Register</h3>} bordered>
-                  <Form fluid onSubmit={handleSubmite}>
+                  <Form fluid >
                     <Form.Group>
                       <Form.ControlLabel> e-mail </Form.ControlLabel>
                       <Form.Control name="email" value={email} onChange={e => setEmail(e)}/>
@@ -50,11 +48,12 @@ import {
                     </Form.Group>
                     <Form.Group>
                       <Form.ControlLabel>Password</Form.ControlLabel>
-                      <Form.Control name="password" type="password" autoComplete="off" value={password} onChange={e => setPassword(e)}  />
+                      <Form.Control name="password" type="password" autoComplete="off" 
+                      value={password} onChange={e => setPassword(e)}  />
                     </Form.Group>
                     <Form.Group>
                       <ButtonToolbar>
-                        <Button appearance="primary" type ="submit">Register</Button>
+                        <Button appearance="primary" type ="submit" onClick={HandleClick}>Register</Button>
                       </ButtonToolbar>
                     </Form.Group>
                   </Form>

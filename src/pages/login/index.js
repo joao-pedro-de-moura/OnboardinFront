@@ -5,7 +5,8 @@ import {
   ButtonToolbar,
   Button,
   Panel,
-  FlexboxGrid
+  FlexboxGrid,
+
 } from 'rsuite';
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
@@ -15,13 +16,13 @@ import * as actions from '../../store/actions'
 export default function Login(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  
   const dispatch = useDispatch()
 
     function HandleClick(e){
       
       dispatch(actions.clicaBotaoRequest({email, password}))
-
-
+    
 }
 
   return (

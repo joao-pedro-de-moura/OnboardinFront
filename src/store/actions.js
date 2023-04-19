@@ -12,11 +12,35 @@ export function clicaBotaoErro(payload){
         payload
 
     }
-
+ 
 }
 export function clicaBotaoSuccess(payload){
     return{
         type: 'SUCCESS',
+        payload
+
+    }
+
+}
+
+export function editRequest(payload){
+    return{
+        type: 'EDIT_REQUEST',
+        payload
+    }
+
+}
+export function editSuccsses(payload){
+    return{
+        type: 'EDIT_SUCCESS',
+        payload
+
+    }
+ 
+}
+export function editFailure(payload){
+    return{
+        type: 'EDIT_ERRO',
         payload
 
     }

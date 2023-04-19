@@ -4,23 +4,33 @@ import axios from '../services/axios'
 
 
 
+
 function* requests({payload}){
     try{
-       
-            const response = yield call(axios.post,'/auth', payload)
-            
-            yield put(actions.clicaBotaoSuccess({...response.data}))
-          
-            console.log("Logado");
+        const response = yield call(axios.post,'/auth', payload) 
+        yield put(actions.clicaBotaoSuccess({...response.data}))     
     }catch{
-        const response = yield call(axios.post,'/auth', payload)
-        yield put(actions.clicaBotaoErro())
-        console.log(payload);
-        console.log(response.data)
-
+        console.log("erro");
     }
    
 
 }
 
-export default all([takeLatest("REQUEST",requests)])
+function* editRequest({payload}){
+        const {id, email, name} = payload
+        try{
+            if(id){
+                yield call(axios.put, `/clients/${id}`, {
+                    email,
+                    name
+                })
+            }
+        }catch{
+                console.log("erro")
+                yield put(actions.editFailure())
+        }
+}
+export default all([
+                    takeLatest("REQUEST",requests),
+                    takeLatest("EDIT_REQUEST",editRequest)
+                ])

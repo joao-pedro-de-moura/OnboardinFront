@@ -1,21 +1,25 @@
+
+
 const initialState = {
     token: false,
-    user: {}
+    user: {},
+    isLoggedIn: false
 }
 
 export default function reduce (state = initialState, action){
     switch(action.type){
-        case 'SUCCESS': {
-                
+        case 'SUCCESS': { 
                 const newState = {...state}
-                newState.botaoClicado = !newState.botaoClicado
-                console.log( action.payload)
+                newState.token = action.payload.token
+                newState.user = action.payload.user
+                newState.isLoggedIn = true
+                console.log(newState)
             return newState
         }
-
+ 
         case 'ERRO': {
            console.log("erro")
-           return state
+           return initialState
     }
 
     case 'REQUEST': {
