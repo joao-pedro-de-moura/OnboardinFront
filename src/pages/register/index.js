@@ -5,7 +5,8 @@ import {
     ButtonToolbar,
     Button,
     Panel,
-    FlexboxGrid
+    FlexboxGrid,
+    ButtonGroup
   } from 'rsuite';
   import React, {useState} from 'react';
 import axios from '../../services/axios';
@@ -52,8 +53,10 @@ import axios from '../../services/axios';
                       value={password} onChange={e => setPassword(e)}  />
                     </Form.Group>
                     <Form.Group>
-                      <ButtonToolbar>
-                        <Button appearance="primary" type ="submit" onClick={HandleClick}>Register</Button>
+                      <ButtonToolbar  >
+                      <ButtonGroup justified  >
+                        <Button  style={{ width: "12px" }} appearance="primary" type ="submit" onClick={HandleClick}>Register</Button>
+                        </ButtonGroup>
                       </ButtonToolbar>
                     </Form.Group>
                   </Form>

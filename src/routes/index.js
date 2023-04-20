@@ -15,11 +15,9 @@ export default function Routers(){
         <Routes>
             <Route  element ={<IsLoggedIn/>} >
             <Route  path="/admin" element ={<Admin/>} />
-            <Route  path="/" element ={<User/>} />
+            <Route  path="/user" element ={<User/>} />
             </Route>
-            
             <Route  path="/login" element ={<Login/>} />
-          
             <Route  path="/register" element ={<Register/>} />
             <Route  path="*" element ={<PageErro/>} />
          </Routes>

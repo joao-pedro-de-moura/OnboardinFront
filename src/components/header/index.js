@@ -1,6 +1,5 @@
 import { Navbar, Nav } from 'rsuite';
 import HomeIcon from '@rsuite/icons/legacy/Home';
-import CogIcon from '@rsuite/icons/legacy/Cog';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions'
 export default function Header(){
@@ -10,22 +9,14 @@ export default function Header(){
     }
     return(
   <Navbar>
-    <Navbar.Brand href="#">RSUITE</Navbar.Brand>
+   
     <Nav>
-      <Nav.Item icon={<HomeIcon appearance="link" href='/' />}>Home</Nav.Item>
-      <Nav.Item appearance="link" href='/register'>News</Nav.Item>
-      <Nav.Item appearance="link" href='/login'>Products</Nav.Item>
-      <Nav.Menu title="About">
-        <Nav.Item>Company</Nav.Item>
-        <Nav.Item>Team</Nav.Item>
-        <Nav.Menu title="Contact">
-          <Nav.Item>Via email</Nav.Item>
-          <Nav.Item>Via telephone</Nav.Item>
-        </Nav.Menu>
-      </Nav.Menu>
+      <Nav.Item appearance="link" href='/admin' >Home</Nav.Item>
+      <Nav.Item appearance="link" href='/register'>Register</Nav.Item>
+      <Nav.Item appearance="link" href='/login'>Sign In</Nav.Item>
     </Nav>
     <Nav pullRight>
-      <Nav.Item icon={<CogIcon />} onClick={handleLogout}>Settings</Nav.Item>
+      <Nav.Item  onClick={handleLogout}>Logout</Nav.Item>
     </Nav>
   </Navbar>
     )

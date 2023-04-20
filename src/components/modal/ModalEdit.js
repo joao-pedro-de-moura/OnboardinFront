@@ -1,39 +1,43 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { Modal, Button, Input } from 'rsuite';
 import axios from '../../services/axios';
-import { useSelector, useDispatch } from "react-redux";
-import * as actions from'../../store/actions'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Toast from '../toast/Toast';
 
-export default function Modaledit({open, onClose}){
-    const dispatch = useDispatch()
+export default function Modaledit({open, onClose, id}){
+  
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const id = useSelector(state => state.auth.user.id)
-    const nameStore = useSelector(state => state.auth.user.name)
-    const emailStore = useSelector(state => state.auth.user.email)
-    useEffect(() => {
-      setName(nameStore)
-
-
-    }, [nameStore, emailStore, id ])
-
-    function HandleClick(){
-     dispatch(actions.editRequest({name, id, email}))
-      console.log(name)
+    const [err, setErr] = useState([])
+    function HandleClick(e){ 
+      e.preventDefault()
+       axios.put(`/clients/${id}`, {
+        email,
+        name
+        
+      }).catch(function (error) {
+        const erros = error.response.data;
+       setErr(erros.map(err => err))
+      });
+      console.log(err)
+      err.map(err => toast.warning(err));
       
     }
   return (
     <>
+
       <Modal
         open={open}
         onClose={onClose}
+        
       >
         <Modal.Header>
           <Modal.Title>Modal Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-             <Input  name="name" value={name} onChange={e => setName(e)} />
-             <Input  name="email" value={email} onChange={e => setEmail(e)} />
+          name  <Input  name="name" label="name" value={name} onChange={e => setName(e)} />
+          email<Input  name="email"  label ="email" value={email} onChange={e => setEmail(e)} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={HandleClick} appearance="primary">
@@ -43,6 +47,7 @@ export default function Modaledit({open, onClose}){
             Cancel
           </Button>
         </Modal.Footer>
+        <ToastContainer />
       </Modal>
     </>
   );

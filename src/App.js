@@ -2,7 +2,7 @@
   import './App.css';
   import 'rsuite/dist/rsuite.min.css';
   import Routes from './routes/index.js';
-  import Globalstyles from './styles/global_styles.js';
+ 
   import { Provider } from 'react-redux';
   import store, {persistor} from './store'
   import { PersistGate } from 'redux-persist/integration/react';
@@ -18,7 +18,7 @@
         <PersistGate persistor={persistor}>
         <Header/>
         <Routes/>
-        <Globalstyles/>
+        
         </PersistGate>
         </Provider>
         </div>

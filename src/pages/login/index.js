@@ -44,7 +44,7 @@ export default function Login(){
                      value={password} onChange={e => setPassword(e)}  />
                   </Form.Group>
                   <Form.Group>
-                    <ButtonToolbar>
+                    <ButtonToolbar >
                       <Button appearance="primary" onClick={HandleClick}>Sign in</Button>
                       <Button appearance="link" href='/register'>Forgot password?</Button>
                     </ButtonToolbar>
