@@ -21,7 +21,7 @@ export default function Modaledit({open, onClose, id}){
        setErr(erros.map(err => err))
       });
       console.log(err)
-      err.map(err => toast.warning(err));
+      err.map(err => toast.warning(err.message));
       
     }
   return (

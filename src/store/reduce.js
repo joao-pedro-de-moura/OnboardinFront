@@ -13,7 +13,7 @@ export default function reduce (state = initialState, action){
                 newState.token = action.payload.token
                 newState.user = action.payload.user
                 newState.isLoggedIn = true
-                console.log(newState)
+                console.log(newState.token)
             return newState
         }
  
