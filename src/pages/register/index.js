@@ -9,26 +9,26 @@ import {
     ButtonGroup
   } from 'rsuite';
   import React, {useState} from 'react';
-import axios from '../../services/axios';
-  
+  import axios from '../../services/axios';
+  import { ToastContainer, toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/actions'
 
   export default function Register(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
+    const [err, setErr] = useState([])
+   const dispatch = useDispatch()
 
-    function HandleClick(){
-        try{
-            axios.post('/clients', {
-              email,
-              password,
-              name
-            })
-        }catch{
+    async function  HandleClick(){
+        dispatch(actions.registerSuccsses({email, password, name}))
+        dispatch(actions.clicaBotaoRequest({email, password}))
+        
           
-        }
-
-    }
+  }
+  
 
 
     return (

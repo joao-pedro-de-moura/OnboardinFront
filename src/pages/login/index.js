@@ -9,11 +9,12 @@ import {
 
 } from 'rsuite';
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions'
 
 
 export default function Login(){
+  const estado = useSelector(state => state)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   
@@ -22,7 +23,7 @@ export default function Login(){
     function HandleClick(e){
       
       dispatch(actions.clicaBotaoRequest({email, password}))
-    
+        
 }
 
   return (

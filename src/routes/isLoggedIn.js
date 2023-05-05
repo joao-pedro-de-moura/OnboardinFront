@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const PrivateRoutes = () =>{
     const isLoggedIn = useSelector(state => state.auth.token)
     return(
-        isLoggedIn ?  <Outlet/> : <Navigate to = "/login"/>
+        isLoggedIn ?  <Outlet/> : <Navigate to = "/"/>
         
     )
 

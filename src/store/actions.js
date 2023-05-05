@@ -46,3 +46,27 @@ export function editFailure(payload){
     }
 
 }
+
+export function registerRequest(payload){
+    return{
+        type: 'REGISTER_REQUEST',
+        payload
+    }
+
+}
+export function registerSuccsses(payload){
+    return{
+        type: 'REGISTER_SUCCESS',
+        payload
+
+    }
+ 
+}
+export function registerFailure(payload){
+    return{
+        type: 'REGISTER_ERRO',
+        payload
+
+    }
+
+}

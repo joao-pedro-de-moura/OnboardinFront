@@ -13,7 +13,7 @@ export default function Header(){
     <Nav>
       <Nav.Item appearance="link" href='/admin' >Home</Nav.Item>
       <Nav.Item appearance="link" href='/register'>Register</Nav.Item>
-      <Nav.Item appearance="link" href='/login'>Sign In</Nav.Item>
+      <Nav.Item appearance="link" href='/'>Sign In</Nav.Item>
     </Nav>
     <Nav pullRight>
       <Nav.Item  onClick={handleLogout}>Logout</Nav.Item>

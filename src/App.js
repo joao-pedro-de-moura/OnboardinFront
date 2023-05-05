@@ -7,7 +7,7 @@
   import store, {persistor} from './store'
   import { PersistGate } from 'redux-persist/integration/react';
   import Header from './components/header';
-
+  import { ToastContainer } from 'react-toastify';
   class App extends Component {
   
     render() {
@@ -18,7 +18,7 @@
         <PersistGate persistor={persistor}>
         <Header/>
         <Routes/>
-        
+        <ToastContainer/>
         </PersistGate>
         </Provider>
         </div>

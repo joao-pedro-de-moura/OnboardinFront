@@ -7,13 +7,14 @@ const initialState = {
 }
 
 export default function reduce (state = initialState, action){
+    console.log(action.type)
     switch(action.type){
         case 'SUCCESS': { 
                 const newState = {...state}
                 newState.token = action.payload.token
                 newState.user = action.payload.user
                 newState.isLoggedIn = true
-                console.log(newState.token)
+                
             return newState
         }
  
