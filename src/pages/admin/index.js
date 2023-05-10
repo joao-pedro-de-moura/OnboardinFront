@@ -4,7 +4,7 @@ import axios from '../../services/axios';
 import EditIcon from '@rsuite/icons/Edit';
 import TrashIcon from '@rsuite/icons/Trash';
 import ModalEdit from "../../components/modal/ModalEdit";
-import { AvatarGroup, Avatar } from 'rsuite';
+import {  Avatar } from 'rsuite';
 import { Uploader } from 'rsuite';
 import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
 
@@ -20,7 +20,7 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
     const [id, setId] = useState('')
     const [nameModal, setNameModal] = useState('')
     const [emailModal, setEmailModal] = useState('')
-
+    const [profileModal, setProfileModal] = useState([])
 
       async function handleDelete(RowId){
         await axios.delete(`/clients/${RowId}`)
@@ -38,34 +38,35 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
           setAtt(false)
       }, [Att])
      
-    
     return( 
       <div className="show-grid"> 
       <FlexboxGrid align="middle" justify="center" style={{ marginTop: '20px' }}>
-        <FlexboxGrid.Item colspan={6}>
+        <FlexboxGrid.Item colspan={10}>
     <Table
-      height={400}
+      width={600}
+      height={450}
       data={clients}
       onRowClick={rowData => {
-        console.log(rowData.profiles)
         setId(rowData.id);
         setNameModal(rowData.name);
         setEmailModal(rowData.email);
-
+        setProfileModal(rowData.profiles.map(img => img.url))
       }} >
-
+          
         <Column width={150}>
           <HeaderCell>Name</HeaderCell>
           <Cell dataKey="name" />
         </Column>
         <Column width={150}>
+          <HeaderCell>Email</HeaderCell>
+          <Cell dataKey="email" />
+        </Column>
+        <Column width={150}>
           <HeaderCell>Profile</HeaderCell>
-          <Cell style={{ padding: '6px' }}>
-          {rowData => (     
-              <div>  
-                <AvatarGroup spacing={6}>
-                   <Avatar circle src = {rowData.profiles.map(img => img.url)}  />
-                </AvatarGroup>
+          <Cell style={{ padding: '1px' }}>
+          {rowData => (   
+              <div> 
+                  <Avatar circle src = {rowData.profiles.length > 0 ? rowData.profiles[0].url : ''}  />
               </div>
             )}
             </Cell>
@@ -88,8 +89,9 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
                  open={open}
                  onClose={handleClose}
                  id ={id}
-                 emaiModal ={emailModal}
+                 emailModal ={emailModal}
                  nameModal ={nameModal}
+                 profileModal={profileModal}
             />
    </div> 
   )

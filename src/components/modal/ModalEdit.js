@@ -4,18 +4,17 @@ import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
-import { Uploader } from 'rsuite';
-  import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
+import {AvatarGroup,  Avatar } from 'rsuite';
 
 
-export default  function Modaledit({open, onClose, id, nameModal, emailModal}){
+export default  function Modaledit({open, onClose, id, nameModal, emailModal, profileModal}){
   
   const [fileList, setFileList] = React.useState([]);
   const uploader = React.useRef();
    
 
   const estado = useSelector(state => state)
-
+    const [foto, setFoto] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [err, setErr] = useState([])
@@ -37,6 +36,25 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal}){
       err.map(err => toast.warning(err.message));
       
     }
+
+    const handleChange = async e =>{
+      const file = e.target.files[0]
+      setFoto(file)
+      const formData = new FormData()
+      formData.append('user_id', id)
+      formData.append('foto', foto)
+      console.log(foto)
+        try{
+             await axios.post('/', formData, {
+               
+            })
+         
+          }catch{
+              console.log(foto) 
+          } 
+
+    }
+    
   return (
     <>
 
@@ -49,8 +67,11 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal}){
           <Modal.Title>Modal Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          name  <Input  name="name"  value={name} onChange={e => setName(e)} />
-          email <Input  name="email"   value={email} onChange={e => setEmail(e)} />
+        <AvatarGroup spacing={6}>
+        <Avatar circle src = {profileModal}  />
+        </AvatarGroup >
+          name  <Input  name="name"  value={nameModal} onChange={e => setName(e)} />
+          email <Input  name="email"   value={emailModal} onChange={e => setEmail(e)} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={HandleClick} appearance="primary">
@@ -59,22 +80,8 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal}){
           <Button onClick={onClose} appearance="subtle">
             Cancel
           </Button>
-          <Uploader
-        fileList={fileList}
-        autoUpload={false}
-        action="//jsonplaceholder.typicode.com/posts/"
-        onChange={setFileList}
-        ref={uploader}
-      />
-      <hr />
-      <Button
-        disabled={!fileList.length}
-        onClick={() => {
-          uploader.current.start();
-        }}
-      >
-        Start Upload
-      </Button>
+          <input type ='file' id='foto' onChange={ handleChange} />
+         
         </Modal.Footer>
      
       </Modal>

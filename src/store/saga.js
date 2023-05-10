@@ -24,7 +24,7 @@ function* requests({payload}){
 function* register({payload}){
     try{
     
-        yield call(axios.post,'/clients', payload) 
+      const response =  yield call(axios.post,'/clients', payload) 
 
     }catch{
 

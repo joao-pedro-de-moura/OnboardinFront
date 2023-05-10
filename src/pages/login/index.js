@@ -29,7 +29,6 @@ export default function Login(){
   return (
       <div className="show-fake-browser login-page">
       <Container>
-       
         <Content>
           <FlexboxGrid justify="center">
             <FlexboxGrid.Item colspan={12}>
@@ -47,7 +46,7 @@ export default function Login(){
                   <Form.Group>
                     <ButtonToolbar >
                       <Button appearance="primary" onClick={HandleClick}>Sign in</Button>
-                      <Button appearance="link" href='/register'>Forgot password?</Button>
+                      <Button appearance="link" >Forgot password?</Button>
                     </ButtonToolbar>
                   </Form.Group>
                 </Form>
