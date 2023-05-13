@@ -45,7 +45,7 @@ export default function Login(){
                   </Form.Group>
                   <Form.Group>
                     <ButtonToolbar >
-                      <Button appearance="primary" onClick={HandleClick}>Sign in</Button>
+                      <Button appearance="primary" onClick={async () => HandleClick}>Sign in</Button>
                       <Button appearance="link" >Forgot password?</Button>
                     </ButtonToolbar>
                   </Form.Group>

@@ -8,10 +8,7 @@ import {
     FlexboxGrid,
     ButtonGroup
   } from 'rsuite';
-  import React, {useState} from 'react';
-  import axios from '../../services/axios';
-  import { ToastContainer, toast } from 'react-toastify';
-import { Navigate } from 'react-router-dom';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions'
 
