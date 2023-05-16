@@ -5,11 +5,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import {AvatarGroup,  Avatar } from 'rsuite';
+import { set } from 'lodash';
 
 
-export default  function Modaledit({open, onClose, id, nameModal, emailModal, profileModal}){
+export default  function Modaledit({open, onClose, id, nameModal, emailModal, profileModal, getData}){
   
-  const [fileList, setFileList] = React.useState([]);
+  
   const uploader = React.useRef();
    
 
@@ -18,6 +19,7 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [err, setErr] = useState([])
+    const [file, setFile] = useState('')
     
    async function HandleClick(e){ 
       e.preventDefault()
@@ -37,23 +39,36 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
       
     }
 
-    const handleChange = async e =>{
-      const file = e.target.files[0]
-      setFoto(file)
+    const handleChange = (e) =>{
+      
+      setFile(e.target.files[0])
+     
+    }
+
+
+    
+
+    const handleSend = async () =>{
+      onClose()
+    
       const formData = new FormData()
       formData.append('user_id', id)
-      formData.append('foto', foto)
-      console.log(foto)
+      formData.append('foto', file)
+      console.log(file)
         try{
-             await axios.post('/', formData, {
+             await axios.post('/upload', formData, {
                
-            })
+            }).then(() => {
+              getData()
+            }) 
          
           }catch{
               console.log(foto) 
           } 
 
     }
+
+    
     
   return (
     <>
@@ -80,8 +95,10 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
           <Button onClick={onClose} appearance="subtle">
             Cancel
           </Button>
-          <input type ='file' id='foto' onChange={ handleChange} />
-         
+          <input type ='file' id='foto' onChange={handleChange} />
+          <Button onClick={async () => handleSend()} appearance="subtle">
+            enviar
+          </Button>
         </Modal.Footer>
      
       </Modal>

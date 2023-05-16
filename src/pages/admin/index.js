@@ -22,6 +22,12 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
     const [emailModal, setEmailModal] = useState('')
     const [profileModal, setProfileModal] = useState([])
 
+    async function getData(){
+      const response = await axios.get('/clients')
+      const {data} = response
+      setClients(data)
+ }
+
       async function handleDelete(RowId){
         await axios.delete(`/clients/${RowId}`)
           setAtt(true)
@@ -29,14 +35,10 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
 
 
       useEffect(() => {
-        async function getData(){
-             const response = await axios.get('/clients')
-             const {data} = response
-             setClients(data)
-        }
+       
           getData()
           setAtt(false)
-      }, [Att])
+      },[])
      
     return( 
       <div className="show-grid"> 
@@ -92,6 +94,7 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
                  emailModal ={emailModal}
                  nameModal ={nameModal}
                  profileModal={profileModal}
+                 getData={async ()=> getData()}
             />
    </div> 
   )
