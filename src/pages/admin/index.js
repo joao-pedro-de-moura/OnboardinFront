@@ -38,7 +38,7 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
        
           getData()
           setAtt(false)
-      },[])
+      },[Att])
      
     return( 
       <div className="show-grid"> 

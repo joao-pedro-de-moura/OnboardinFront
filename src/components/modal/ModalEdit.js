@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Modal, Button, Input } from 'rsuite';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
@@ -12,15 +12,18 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
   
   
   const uploader = React.useRef();
-   
+  
 
   const estado = useSelector(state => state)
     const [foto, setFoto] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
+    const [name, setName] = useState(nameModal)
+    const [email, setEmail] = useState(emailModal)
     const [err, setErr] = useState([])
     const [file, setFile] = useState('')
     
+    
+
+
    async function HandleClick(e){ 
       e.preventDefault()
       onClose()
@@ -85,8 +88,8 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
         <AvatarGroup spacing={6}>
         <Avatar circle src = {profileModal}  />
         </AvatarGroup >
-          name  <Input  name="name"  value={nameModal} onChange={e => setName(e)} />
-          email <Input  name="email"   value={emailModal} onChange={e => setEmail(e)} />
+          name  <Input  name="name"  value={name} onChange={e => setName(e)} />
+          email <Input  name="email"   value={email} onChange={e => setEmail(e)} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={HandleClick} appearance="primary">
