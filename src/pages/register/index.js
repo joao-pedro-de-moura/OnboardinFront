@@ -19,7 +19,7 @@ import * as actions from '../../store/actions'
     const [err, setErr] = useState([])
    const dispatch = useDispatch()
 
-    async function  HandleClick(){
+   async function  HandleClick(){
         dispatch(actions.registerSuccsses({email, password, name}))
         dispatch(actions.clicaBotaoRequest({email, password}))
         

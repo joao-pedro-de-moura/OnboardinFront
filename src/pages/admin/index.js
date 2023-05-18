@@ -21,6 +21,7 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
     const [nameModal, setNameModal] = useState('')
     const [emailModal, setEmailModal] = useState('')
     const [profileModal, setProfileModal] = useState([])
+    const [password, setPassword] = useState('')
 
     async function getData(){
       const response = await axios.get('/clients')
@@ -52,7 +53,8 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
         setId(rowData.id);
         setNameModal(rowData.name);
         setEmailModal(rowData.email);
-        setProfileModal(rowData.profiles.map(img => img.url))
+        setProfileModal(rowData.profiles.length > 0 ? rowData.profiles[0].url : '' )
+        setPassword(rowData.password)
       }} >
           
         <Column width={150}>
@@ -94,6 +96,7 @@ import CameraRetroIcon from '@rsuite/icons/legacy/CameraRetro';
                  emailModal ={emailModal}
                  nameModal ={nameModal}
                  profileModal={profileModal}
+                 passwordModal={password}
                  getData={async ()=> getData()}
             />
    </div> 

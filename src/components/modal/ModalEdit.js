@@ -8,7 +8,7 @@ import {AvatarGroup,  Avatar } from 'rsuite';
 import { set } from 'lodash';
 
 
-export default  function Modaledit({open, onClose, id, nameModal, emailModal, profileModal, getData}){
+export default  function Modaledit({open, onClose, id, nameModal, emailModal, profileModal, getData, passwordModal}){
   
   
   const uploader = React.useRef();
@@ -19,14 +19,38 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
     const [name, setName] = useState(nameModal)
     const [email, setEmail] = useState(emailModal)
     const [err, setErr] = useState([])
-    const [file, setFile] = useState('')
-    
-    
+    const [file, setFile] = useState(profileModal)
+    const [password, setPassword] = useState(passwordModal)
+    const [newPassword, setNewPassword] = useState(passwordModal)
 
+    useEffect(()=>{
+      setName(nameModal);
+      setEmail(emailModal)
+      setFile(profileModal)
+     },[nameModal, emailModal, profileModal])
+     
+     
+     async function changePassword(){
+      await axios.put(`/updatePassword/${id}`, {
+        password,
+        newPassword
+        
+      }, {headers: {
+        Authorization : `Bearer ${estado.auth.token}`
+        }}).catch(async function (error) {
+        const erros = await error.response.data;
+       setErr(erros.map(err => err))
+      });
+     
+      err.map(err => toast.warning(err.message));
+      
+    }
 
    async function HandleClick(e){ 
       e.preventDefault()
       onClose()
+      handleSend()
+      changePassword()
       await axios.put(`/clients/${id}`, {
         email,
         name
@@ -42,6 +66,8 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
       
     }
 
+   
+    
     const handleChange = (e) =>{
       
       setFile(e.target.files[0])
@@ -88,8 +114,10 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
         <AvatarGroup spacing={6}>
         <Avatar circle src = {profileModal}  />
         </AvatarGroup >
-          name  <Input  name="name"  value={name} onChange={e => setName(e)} />
+          nome  <Input  name="name"  value={name} onChange={e => setName(e)} />
           email <Input  name="email"   value={email} onChange={e => setEmail(e)} />
+          senha  <Input  name="password"   onChange={e => setPassword(e)} />
+          nova senha <Input  name="newPassword"    onChange={e => setNewPassword(e)} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={HandleClick} appearance="primary">
@@ -99,9 +127,7 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
             Cancel
           </Button>
           <input type ='file' id='foto' onChange={handleChange} />
-          <Button onClick={async () => handleSend()} appearance="subtle">
-            enviar
-          </Button>
+         
         </Modal.Footer>
      
       </Modal>
