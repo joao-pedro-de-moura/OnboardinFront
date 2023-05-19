@@ -8,7 +8,7 @@ const initialState = {
 
 export default function reduce (state = initialState, action){
     console.log(action.type)
-    switch(action.type){
+    switch(action.type){ 
         case 'SUCCESS': { 
                 const newState = {...state}
                 newState.token = action.payload.token
@@ -28,7 +28,11 @@ export default function reduce (state = initialState, action){
         console.log(action.payload)
         return state
 }
-        
+    case 'REQUEST': {
+
+    console.log(action.payload)
+    return state
+}
         default: return  state
     }
     

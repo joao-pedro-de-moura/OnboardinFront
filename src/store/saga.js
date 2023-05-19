@@ -8,14 +8,12 @@ import {get} from 'lodash'
 
 function* requests({payload}){
     try{
-        const response = yield call(axios.post,'/auth', payload) 
+        const response = yield call(axios.post,'/auth', payload)
         yield put(actions.clicaBotaoSuccess({...response.data}))    
-        axios.defaults.headers.Authorizaton = `Bearer ${response.data.token}`
-        
+        axios.defaults.headers.Authorizaton = `Bearer ${response.data.token}`     
     }catch{
         toast.error("Email ou senha invalidos")
-        yield put(actions.clicaBotaoErro())
-        
+        yield put(actions.clicaBotaoErro())  
     }
    
 
@@ -23,9 +21,7 @@ function* requests({payload}){
 
 function* register({payload}){
     try{
-    
       const response =  yield call(axios.post,'/clients', payload) 
-
     }catch{
 
         toast.error("Email ou senha invalidos")

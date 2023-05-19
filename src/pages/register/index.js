@@ -8,24 +8,29 @@ import {
     FlexboxGrid,
     ButtonGroup
   } from 'rsuite';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions'
+
+
 
   export default function Register(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [err, setErr] = useState([])
-   const dispatch = useDispatch()
-
+    const dispatch = useDispatch()
+    const [att, setAtt] = useState(false)
    async function  HandleClick(){
         dispatch(actions.registerSuccsses({email, password, name}))
-        dispatch(actions.clicaBotaoRequest({email, password}))
-        
-          
-  }
+        setAtt(true)
+      }
   
+  
+        useEffect(() => {
+            dispatch(actions.clicaBotaoRequest({email, password}))
+            setAtt(false)
+      },[att])
 
 
     return (
@@ -52,7 +57,7 @@ import * as actions from '../../store/actions'
                     <Form.Group>
                       <ButtonToolbar  >
                       <ButtonGroup justified  >
-                        <Button  style={{ width: "12px" }} appearance="primary" type ="submit" onClick={HandleClick}>Register</Button>
+                        <Button  style={{ width: "12px" }} appearance="primary" type ="submit" onClick={ HandleClick}>Register</Button>
                         </ButtonGroup>
                       </ButtonToolbar>
                     </Form.Group>
