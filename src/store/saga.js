@@ -10,7 +10,7 @@ function* requests({payload}){
     try{
         const response = yield call(axios.post,'/auth', payload)
         yield put(actions.clicaBotaoSuccess({...response.data}))    
-        axios.defaults.headers.Authorizaton = `Bearer ${response.data.token}`     
+        axios.defaults.headers.Authorization = `Bearer ${response.data.token}`     
     }catch{
         toast.error("Email ou senha invalidos")
         yield put(actions.clicaBotaoErro())  
@@ -56,7 +56,7 @@ function persist({payload}){
         const token = get(payload, 'auth.token')
       
         if(!token) return
-        axios.defaults.headers.Authorizaton = `Bearer ${token}`
+        axios.defaults.headers.Authorization = `Bearer ${token}`
        
 
 }

@@ -7,6 +7,7 @@ import IsLoggedOut from './isLoggedOut'
 import User from "../pages/user"
 import Register from "../pages/register"
 import Admin from "../pages/admin"
+import IsAdmin from './isAdmin'
 
 export default function Routers(){
 
@@ -14,7 +15,9 @@ export default function Routers(){
         <BrowserRouter>
         <Routes>
             <Route  element ={<IsLoggedIn/>} >
-                <Route  path="/admin" element ={<Admin/>} />
+                    <Route  element ={<IsAdmin/>} >
+                        <Route  path="/admin" element ={<Admin/>} />
+                    </Route>
                 <Route  path="/user" element ={<User/>} />
             </Route>
             <Route  element ={<IsLoggedOut/>} >

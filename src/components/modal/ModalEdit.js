@@ -35,9 +35,7 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
         password,
         newPassword
         
-      }, {headers: {
-        Authorization : `Bearer ${estado.auth.token}`
-        }}).catch(async function (error) {
+      }).catch(async function (error) {
         const erros = await error.response.data;
        setErr(erros.map(err => err))
       });
@@ -55,9 +53,7 @@ export default  function Modaledit({open, onClose, id, nameModal, emailModal, pr
         email,
         name
         
-      }, {headers: {
-        Authorization : `Bearer ${estado.auth.token}`
-        }}).catch(async function (error) {
+      },).catch(async function (error) {
         const erros = await error.response.data;
        setErr(erros.map(err => err))
       });
